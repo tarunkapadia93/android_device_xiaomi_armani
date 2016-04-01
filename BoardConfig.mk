@@ -62,11 +62,16 @@ BOARD_FLASH_BLOCK_SIZE             := 131072
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
+# Neon Optimizations
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
 # Graphics
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+VSYNC_EVENT_PHASE_OFFSET_NS := 2500000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := 0000000
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # Shader cache config options
@@ -91,7 +96,7 @@ TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_armani.cpp
 TARGET_KERNEL_SOURCE := kernel/xiaomi/armani
 TARGET_KERNEL_CONFIG := cyanogenmod_armani_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=armani
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=armani androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
@@ -116,7 +121,7 @@ USE_CLANG_PLATFORM_BUILD := true
 BOARD_USES_QCOM_HARDWARE := true
 
 # Radio
-TARGET_RIL_VARIANT := caf
+#TARGET_RIL_VARIANT := caf
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.armani
