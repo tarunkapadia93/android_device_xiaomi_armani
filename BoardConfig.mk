@@ -70,8 +70,7 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
-VSYNC_EVENT_PHASE_OFFSET_NS := 2500000
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 0000000
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # Shader cache config options
@@ -96,7 +95,7 @@ TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_armani.cpp
 TARGET_KERNEL_SOURCE := kernel/xiaomi/armani
 TARGET_KERNEL_CONFIG := cyanogenmod_armani_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=armani androidboot.selinux=permissive zcache.enabled=1
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=armani androidboot.selinux=permissive zcache.enabled=1 zcache.compressor=lz4
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
