@@ -34,17 +34,13 @@
 #include "log.h"
 #include "util.h"
 
-#include "init_msm.h"
+#define ISMATCH(a,b)    (!strncmp(a,b,PROP_VALUE_MAX))
 
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void vendor_load_properties()
 {
     char platform[PROP_VALUE_MAX];
     char modem[PROP_VALUE_MAX];
     int rc;
-
-    UNUSED(msm_id);
-    UNUSED(msm_ver);
-    UNUSED(board_type);
 
     rc = property_get("ro.board.platform", platform);
     if (!rc || !ISMATCH(platform, ANDROID_TARGET))
@@ -52,14 +48,14 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
     property_get("ro.boot.modem", modem);
 
-    property_set("ro.product.device", "armani");
-    property_set("ro.build.product", "armani");
-    property_set("ro.build.description", "armani-user 4.4.4 KTU84P V7.1.1.0.KHCMICK release-keys");
-    property_set("ro.build.fingerprint", "Xiaomi/armani/armani:4.4.4/KTU84P/V7.1.1.0.KHCMICK:user/release-keys");
-
     if (strstr(modem, "HM1AW")) {
         property_set("ro.product.model", "HM 1SW");
     } else if (strstr(modem, "HM1AC")) {
         property_set("ro.product.model", "HM 1SC");
     }
+
+    property_set("ro.product.device", "armani");
+    property_set("ro.build.product", "armani");
+    property_set("ro.build.description", "armani-user 4.4.4 KTU84P V7.2.3.0.KHCMIDA release-keys");
+    property_set("ro.build.fingerprint", "Xiaomi/armani/armani:4.4.4/KTU84P/V7.2.3.0.KHCMIDA:user/release-keys");
 }
